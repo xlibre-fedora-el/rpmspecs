@@ -7,7 +7,7 @@
 %global ansic_major 1
 %global ansic_minor 4
 %global videodrv_major 28
-%global videodrv_minor 1
+%global videodrv_minor 128
 %global xinput_major 26
 %global xinput_minor 0
 %global extension_major 11
@@ -20,7 +20,7 @@
 Summary:    XLibre X server
 Name:       xlibre-xserver
 Version:    25.1.2
-Release:    1%{?dist}
+Release:    2%{?dist}
 URL:        https://github.com/X11Libre/%{reponame}
 # SPDX
 License:    Adobe-Display-PostScript AND BSD-3-Clause AND DEC-3-Clause AND HPND AND HPND-sell-MIT-disclaimer-xserver AND HPND-sell-variant AND ICU AND ISC AND MIT AND MIT-open-group AND NTP AND SGI-B-2.0 AND SMLNJ AND X11 AND X11-distribute-modifications-variant
@@ -129,6 +129,7 @@ Common files shared among all XLibre X servers.
 
 %package        Xorg
 Summary:        XLibre Xorg X server
+Provides:       xlibre-xserver = %{version}-%{release}
 Requires:       libEGL
 Requires:       system-setup-keyboard
 Requires:       xlibre-xf86-input-libinput
@@ -439,6 +440,10 @@ find %{buildroot} -type f -name '*.la' -delete
 
 
 %changelog
+* Tue Feb 10 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.2-2
+- Fix xserver video ABI provide to match driver requirements (videodrv-28 >= 128)
+- Add virtual Provide: xlibre-xserver on Xorg subpackage for install compatibility
+
 * Tue Feb 10 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.2-1
 - Upgrade XLibre to version 25.1.2
 

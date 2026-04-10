@@ -57,6 +57,9 @@ find %{buildroot} -name "*.la" -delete
 %{_mandir}/man4/vmware.4*
 
 %changelog
+* Wed Feb 18 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.0-2
+- Change runtime dependency from libxatracker to mesa-compat-libxatracker
+
 * Wed Feb 18 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.0-1
 - Upgrade XLibre vmware driver to version 25.0.0
 
