@@ -9,7 +9,7 @@
 Summary:    XLibre vmware X11 video driver
 Name:       xlibre-xf86-video-vmware
 Version:    25.0.0
-Release:    1%{?dist}
+Release:    2%{?dist}
 URL:        https://github.com/X11Libre/%{reponame}
 License:    MIT AND X11
 
