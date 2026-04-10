@@ -32,7 +32,7 @@ BuildRequires:  pkgconfig(xorg-server) >= 1.12
 
 Requires: Xorg %(xserver-sdk-abi-requires ansic)
 Requires: Xorg %(xserver-sdk-abi-requires videodrv)
-Requires: libxatracker >= 8.0.1-4
+Requires: mesa-compat-libxatracker
 
 Provides:       %{oldname} = %{version}-%{release}
 Obsoletes:      %{oldname} < %{version}-%{release}
