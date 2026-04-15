@@ -2,6 +2,7 @@
 %global driverdir %{moduledir}/drivers
 %global oldname xorg-x11-drv-qxl
 %global reponame xf86-video-qxl
+%define _disable_source_fetch 0
 
 %undefine _hardened_build
 
@@ -15,7 +16,7 @@
 Summary:    XLibre qxl X11 video driver
 Name:       xlibre-xf86-video-qxl
 Version:    25.0.0
-Release:    1%{?dist}
+Release:    2%{?dist}
 URL:        https://github.com/X11Libre/%{reponame}
 License:    MIT
 
@@ -86,7 +87,8 @@ autoreconf -vif
 %make_install
 
 find %{buildroot} -name "*.la" -delete
-rm -f %{buildroot}/usr/share/doc/xf86-video-qxl/spiceqxl.xorg.conf.example
+rm -f %{buildroot}%{_docdir}/xf86-video-qxl/spiceqxl.xorg.conf.example
+rm -f %{buildroot}%{_docdir}/xlibre-xf86-video-qxl/spiceqxl.xorg.conf.example
 
 %if %{with_xspice}
 mkdir -p %{buildroot}%{_sysconfdir}/X11
@@ -110,6 +112,9 @@ install -p -m 644 examples/spiceqxl.xorg.conf.example \
 
 
 %changelog
+* Wed Apr 15 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.0-2
+- Fix unpackaged doc example path cleanup for renamed docdir
+
 * Wed Apr 15 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.0-1
 - Update to 25.0.0
 
