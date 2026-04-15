@@ -60,7 +60,7 @@ find %{buildroot} -name "*.la" -delete
 %{_datadir}/X11/xorg.conf.d/10-radeon.conf
 
 %changelog
-* Tue Apr 15 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.1-1
+* Wed Apr 15 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.1-1
 - Update to 25.0.1
 
 * Fri Aug 22 2025 Kevin Kofler <Kevin@tigcc.ticalc.org> - 22.0.0.2-1

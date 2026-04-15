@@ -97,7 +97,7 @@ will be available as normal evdev node.
 %{_unitdir}/wacom-inputattach@.service
 
 %changelog
-* Tue Apr 15 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.0-1
+* Wed Apr 15 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.0-1
 - Update to 25.0.0
 
 * Fri Aug 22 2025 Kevin Kofler <Kevin@tigcc.ticalc.org> - 1.2.3.2-1

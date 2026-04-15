@@ -110,6 +110,9 @@ install -p -m 644 examples/spiceqxl.xorg.conf.example \
 
 
 %changelog
+* Wed Apr 15 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.0-1
+- Update to 25.0.0
+
 * Thu Aug 14 2025 Kevin Kofler <Kevin@tigcc.ticalc.org> - 0.1.6.1-1
 - Switch upstream to the X11Libre GitHub project
 - Rename package from xorg-x11-drv-dummy to xlibre-xf86-video-dummy
