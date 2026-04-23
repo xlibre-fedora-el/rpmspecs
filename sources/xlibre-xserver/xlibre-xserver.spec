@@ -19,7 +19,7 @@
 
 Summary:    XLibre X server
 Name:       xlibre-xserver
-Version:    25.1.3
+Version:    25.1.4
 Release:    1%{?dist}
 URL:        https://github.com/X11Libre/%{reponame}
 # SPDX
@@ -440,7 +440,10 @@ find %{buildroot} -type f -name '*.la' -delete
 
 
 %changelog
-* Tue Feb 10 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.3-1
+* Thu Apr 23 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.4-1
+- Upgrade XLibre to version 25.1.4
+
+* Fri Apr 10 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.3-1
 - Upgrade XLibre to version 25.1.3
 
 * Tue Feb 10 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.2-2
