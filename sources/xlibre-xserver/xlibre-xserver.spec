@@ -6,6 +6,9 @@
 # Released ABI versions:
 %global ansic_major 1
 %global ansic_minor 4
+%global xorgvideodrv_major 25
+%global xorgvideodrv_minor 2
+
 %global videodrv_major 28
 %global videodrv_minor 128
 %global xinput_major 26
@@ -19,7 +22,7 @@
 
 Summary:    XLibre X server
 Name:       xlibre-xserver
-Version:    25.1.4
+Version:    25.1.5
 Release:    1%{?dist}
 URL:        https://github.com/X11Libre/%{reponame}
 # SPDX
@@ -137,12 +140,14 @@ Requires:       xorg-x11-server-common >= %{version}-%{release}
 Provides:       Xorg = %{version}-%{release}
 Provides:       %{oldname}-Xorg = %{version}-%{release}
 Obsoletes:      %{oldname}-Xorg < %{version}-%{release}
+Provides:       %{oldname}-Xorg%{?_isa} = %{version}-%{release}
 Provides:       Xserver
 # HdG: This should be moved to the wrapper package once the wrapper gets
 # its own sub-package:
 Provides:       xlibre-xserver-wrapper = %{version}-%{release}
 Provides:       %{oldname}-wrapper = %{version}-%{release}
 Provides:       xserver-abi(ansic-%{ansic_major}) = %{ansic_minor}
+Provides:       xserver-abi(videodrv-%{xorgvideodrv_major}) = %{xorgvideodrv_minor}
 Provides:       xserver-abi(videodrv-%{videodrv_major}) = %{videodrv_minor}
 Provides:       xserver-abi(xinput-%{xinput_major}) = %{xinput_minor}
 Provides:       xserver-abi(extension-%{extension_major}) = %{extension_minor}
@@ -440,6 +445,10 @@ find %{buildroot} -type f -name '*.la' -delete
 
 
 %changelog
+* Tue Apr 28 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.5-1
+- Upgrade XLibre to version 25.1.5
+- Fix compatibility issues with RPMfusion's Nvidia driver
+
 * Thu Apr 23 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.4-1
 - Upgrade XLibre to version 25.1.4
 
