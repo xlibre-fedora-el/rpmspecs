@@ -2,6 +2,7 @@
 %define _disable_source_fetch 0
 %undefine _hardened_build
 %undefine _strict_symbol_defs_build
+%global toolchain clang
 
 # Released ABI versions:
 %global ansic_major 1
