@@ -45,6 +45,10 @@ Patch0:     06_use-intel-only-on-pre-gen4.diff
 Patch2:     xlibre-xserver-25.0.0.8-restore-xf86CheckRealOption.patch
 # because the display-managers are not ready yet, do not upstream
 Patch3:     0001-Fedora-hack-Make-the-suid-root-wrapper-always-start-.patch
+%if 0%{?rhel} == 9
+# Meson < 1.3 needs string prefixes for compiler.has_member
+Patch4:     xlibre-xserver-25.1.5-meson-prefix-compat.patch
+%endif
 
 BuildRequires:  bison
 BuildRequires:  flex
@@ -252,6 +256,9 @@ Xserver source code needed to build VNC server (Xvnc).
 #%patch -P1 -p1 -b .nouveau-modesetting
 %patch -P2 -p1 -b .restore-xf86CheckRealOption
 %patch -P3 -p1 -b .root-by-default
+%if 0%{?rhel} == 9
+%patch -P4 -p1 -b .meson-prefix
+%endif
 
 # check the ABI in the source against what we expect.
 getmajor() {
@@ -445,6 +452,9 @@ find %{buildroot} -type f -name '*.la' -delete
 
 
 %changelog
+* Tue Apr 29 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.5-2
+- Add patch for EL9
+
 * Tue Apr 28 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.5-1
 - Upgrade XLibre to version 25.1.5
 - Fix compatibility issues with RPMfusion's Nvidia driver
