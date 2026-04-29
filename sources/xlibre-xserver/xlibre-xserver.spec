@@ -50,8 +50,6 @@ BuildRequires:  bison
 BuildRequires:  flex
 BuildRequires:  gawk
 BuildRequires:  gcc
-BuildRequires:  clang
-BuildRequires:  lld
 BuildRequires:  kernel-headers
 BuildRequires:  libXi-devel
 BuildRequires:  libXinerama-devel
