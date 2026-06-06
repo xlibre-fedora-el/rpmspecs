@@ -373,6 +373,7 @@ find %{inst_srcdir}/hw/xfree86 -name \*.c -delete
 
 # Remove unwanted files/dirs
 find %{buildroot} -type f -name '*.la' -delete
+rm -f %{buildroot}%{_sysconfdir}/X11/xorg.conf.d/*.debian
 
 
 %files common
@@ -422,6 +423,7 @@ find %{buildroot} -type f -name '*.la' -delete
 %dir %{_datadir}/X11/xorg.conf.d
 %{_datadir}/X11/xorg.conf.d/10-quirks.conf
 %{_datadir}/X11/xorg.conf.d/10-nvidia.conf
+%{_datadir}/X11/xorg.conf.d/10-nvidia-modules.conf
 
 %files Xnest
 %{_bindir}/Xnest
