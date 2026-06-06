@@ -22,8 +22,8 @@
 
 Summary:    XLibre X server
 Name:       xlibre-xserver
-Version:    25.1.5
-Release:    2%{?dist}
+Version:    25.1.6
+Release:    1%{?dist}
 URL:        https://github.com/X11Libre/%{reponame}
 # SPDX
 License:    Adobe-Display-PostScript AND BSD-3-Clause AND DEC-3-Clause AND HPND AND HPND-sell-MIT-disclaimer-xserver AND HPND-sell-variant AND ICU AND ISC AND MIT AND MIT-open-group AND NTP AND SGI-B-2.0 AND SMLNJ AND X11 AND X11-distribute-modifications-variant
@@ -376,6 +376,7 @@ find %{inst_srcdir}/hw/xfree86 -name \*.c -delete
 
 # Remove unwanted files/dirs
 find %{buildroot} -type f -name '*.la' -delete
+rm -f %{buildroot}%{_sysconfdir}/X11/xorg.conf.d/*.debian
 
 
 %files common
@@ -425,6 +426,7 @@ find %{buildroot} -type f -name '*.la' -delete
 %dir %{_datadir}/X11/xorg.conf.d
 %{_datadir}/X11/xorg.conf.d/10-quirks.conf
 %{_datadir}/X11/xorg.conf.d/10-nvidia.conf
+%{_datadir}/X11/xorg.conf.d/10-nvidia-modules.conf
 
 %files Xnest
 %{_bindir}/Xnest
@@ -453,6 +455,11 @@ find %{buildroot} -type f -name '*.la' -delete
 
 
 %changelog
+
+
+* Sat Jun 06 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.6-1
+- Upgrade XLibre to version 25.1.6
+
 * Wed Apr 29 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.5-2
 - Add patch for EL9
 
