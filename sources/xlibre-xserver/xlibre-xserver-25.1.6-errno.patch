@@ -1,0 +1,10 @@
+--- a/os/osdep.h
++++ b/os/osdep.h
+@@ -55,6 +55,7 @@ SOFTWARE.
+ #define BITS_PER_LONG LONG_BIT
+ #endif
+ 
++#include <errno.h>
+ #include "dix-config.h"
+ #include <limits.h>
+ #include <stddef.h>
