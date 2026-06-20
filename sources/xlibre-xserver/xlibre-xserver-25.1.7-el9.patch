@@ -1,0 +1,21 @@
+--- a/os/osdep.h
++++ b/os/osdep.h
+@@ -52,6 +52,7 @@ SOFTWARE.
+ #include <errno.h>
+ #include <limits.h>
+ #include <signal.h>
++#include <sys/random.h>
+ #include <stddef.h>
+ #include <X11/Xos.h>
+ #include <X11/Xmd.h>
+@@ -93,8 +94,8 @@ static inline void arc4random_buf(void *buf, size_t nbytes)
+     ssize_t ret;
+     int pos = 0;
+ #ifdef HAVE_GETRANDOM
+-    while (pos < len) {
+-        ret = getrandom(buf + pos, len - pos, 0);
++    while (pos < nbytes) {
++        ret = getrandom(buf + pos, nbytes - pos, 0);
+         if (ret <= 0) {
+             if (ret < 0 && errno == EINTR)
+                 continue;

@@ -47,8 +47,8 @@ Patch2:     xlibre-xserver-25.0.0.8-restore-xf86CheckRealOption.patch
 Patch3:     0001-Fedora-hack-Make-the-suid-root-wrapper-always-start-.patch
 # Meson < 1.3 needs string prefixes for compiler.has_member
 Patch4:     xlibre-xserver-25.1.5-meson-prefix-compat.patch
-# Add missing errno.h include for arc4random_buf on EL9
-Patch5:     xlibre-xserver-25.1.6-errno.patch
+# Fix arc4random_buf/getrandom build on EL9 (upstream regression in 25.1.7)
+Patch5:     xlibre-xserver-25.1.7-el9.patch
 
 BuildRequires:  bison
 BuildRequires:  flex
@@ -258,7 +258,7 @@ Xserver source code needed to build VNC server (Xvnc).
 %patch -P3 -p1 -b .root-by-default
 %if 0%{?rhel} == 9
 %patch -P4 -p1 -b .meson-prefix
-%patch -P5 -p1 -b .errno
+%patch -P5 -p1 -b .el9-getrandom
 %endif
 
 # check the ABI in the source against what we expect.
