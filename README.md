@@ -12,7 +12,7 @@ You can easily install the XLibre Xserver and the libinput driver using the [Cop
 
 ```shell
 sudo dnf copr enable @xlibre/xlibre-xserver
-sudo dnf install xlibre-xserver xlibre-xf86-input-libinput
+sudo dnf install xlibre-xserver xlibre-xf86-input-libinput --allowerasing
 ```
 
 ### Enterprise Linux 10
