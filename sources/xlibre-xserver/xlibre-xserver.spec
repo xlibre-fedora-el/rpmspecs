@@ -22,7 +22,7 @@
 
 Summary:    XLibre X server
 Name:       xlibre-xserver
-Version:    25.1.7
+Version:    25.1.8
 Release:    1%{?dist}
 URL:        https://github.com/X11Libre/%{reponame}
 # SPDX
@@ -455,6 +455,9 @@ rm -f %{buildroot}%{_sysconfdir}/X11/xorg.conf.d/*.debian
 
 
 %changelog
+
+* Mon Jun 22 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.8-1
+- Upgrade XLibre to version 25.1.8
 
 * Fri Jun 19 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.7-1
 - Upgrade XLibre to version 25.1.7
