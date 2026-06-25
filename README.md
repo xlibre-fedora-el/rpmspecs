@@ -39,3 +39,12 @@ sudo wget "$XLIBRE_COPR/repo/alma+epel-10/group_xlibre-xlibre-xserver-alma+epel-
     -O /etc/yum.repos.d/xlibre-xserver-alma+epel-10.repo
 sudo dnf install xlibre-xserver xlibre-xf86-input-libinput
 ```
+
+### Beta version of XLibre
+If you want the newest features you can install the beta version by installing the xlibre-xserver-beta package instead of xlibre-xserver.
+> [!warning]
+> Beware: that this version may contain more bugs than the default stable version.
+
+```shell
+sudo dnf install xlibre-xserver-beta xlibre-xf86-input-libinput --allowerasing
+```
