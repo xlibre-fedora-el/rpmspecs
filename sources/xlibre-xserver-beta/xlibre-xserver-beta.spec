@@ -23,7 +23,7 @@
 
 Summary:    XLibre X server beta
 Name:       xlibre-xserver-beta
-Version:    25.2.0
+Version:    25.2.2
 Release:    1%{?dist}
 URL:        https://github.com/X11Libre/%{reponame}
 # SPDX
@@ -461,6 +461,8 @@ rm -f %{buildroot}%{_sysconfdir}/X11/xorg.conf.d/*.debian
 
 
 %changelog
+* Wed Jul 29 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.2.2-1
+- Upgrade XLibre to version 25.2.2
 
 * Wed Jun 24 2026 Thien Nguyen <nthien86@gmail.com> - 25.2.0-1
 - Add xlibre-xserver-beta package for XLibre 25.2.0
