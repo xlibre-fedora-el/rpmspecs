@@ -253,7 +253,6 @@ Xserver source code needed to build VNC server (Xvnc).
 %prep
 %setup -q -n %{reponame}-%{name}-%{version}
 %patch -P0 -p1 -b .intel-modesetting
-#%patch -P1 -p1 -b .nouveau-modesetting
 %patch -P2 -p1 -b .restore-xf86CheckRealOption
 %patch -P3 -p1 -b .root-by-default
 %if 0%{?rhel} == 9
