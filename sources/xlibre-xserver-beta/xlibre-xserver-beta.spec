@@ -24,7 +24,7 @@
 Summary:    XLibre X server beta
 Name:       xlibre-xserver-beta
 Version:    25.2.2
-Release:    1%{?dist}
+Release:    2%{?dist}
 URL:        https://github.com/X11Libre/%{reponame}
 # SPDX
 License:    Adobe-Display-PostScript AND BSD-3-Clause AND DEC-3-Clause AND HPND AND HPND-sell-MIT-disclaimer-xserver AND HPND-sell-variant AND ICU AND ISC AND MIT AND MIT-open-group AND NTP AND SGI-B-2.0 AND SMLNJ AND X11 AND X11-distribute-modifications-variant
@@ -237,6 +237,7 @@ Provides:       xlibre-xserver-devel = %{version}-%{release}
 Provides:       xlibre-xserver-static
 Provides:       %{oldname}-devel = %{version}-%{release}
 Obsoletes:      %{oldname}-devel < %{version}-%{release}
+Conflicts:      xlibre-xserver-devel
 Provides:       %{oldname}-static
 
 %description devel
@@ -461,6 +462,10 @@ rm -f %{buildroot}%{_sysconfdir}/X11/xorg.conf.d/*.debian
 
 
 %changelog
+* Tue Aug 25 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.2.2-2
+- Add missing Conflicts on devel subpackage against xlibre-xserver-devel
+  so both packages can replace xorg without creating install conflicts
+
 * Wed Jul 29 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.2.2-1
 - Upgrade XLibre to version 25.2.2
 

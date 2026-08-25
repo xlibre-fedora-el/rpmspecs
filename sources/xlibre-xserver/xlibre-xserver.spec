@@ -23,7 +23,7 @@
 Summary:    XLibre X server
 Name:       xlibre-xserver
 Version:    25.1.9
-Release:    1%{?dist}
+Release:    2%{?dist}
 URL:        https://github.com/X11Libre/%{reponame}
 # SPDX
 License:    Adobe-Display-PostScript AND BSD-3-Clause AND DEC-3-Clause AND HPND AND HPND-sell-MIT-disclaimer-xserver AND HPND-sell-variant AND ICU AND ISC AND MIT AND MIT-open-group AND NTP AND SGI-B-2.0 AND SMLNJ AND X11 AND X11-distribute-modifications-variant
@@ -129,6 +129,7 @@ Requires:       xkbcomp
 Requires:       xkeyboard-config
 Provides:       %{oldname}-common = %{version}-%{release}
 Obsoletes:      %{oldname}-common < %{version}-%{release}
+Conflicts:      xlibre-xserver-beta-common
 
 %description    common
 Common files shared among all XLibre X servers.
@@ -146,6 +147,7 @@ Provides:       %{oldname}-Xorg = %{version}-%{release}
 Obsoletes:      %{oldname}-Xorg < %{version}-%{release}
 Provides:       %{oldname}-Xorg%{?_isa} = %{version}-%{release}
 Provides:       Xserver
+Conflicts:      xlibre-xserver-beta-Xorg
 # HdG: This should be moved to the wrapper package once the wrapper gets
 # its own sub-package:
 Provides:       xlibre-xserver-wrapper = %{version}-%{release}
@@ -176,6 +178,7 @@ Summary:        A protocol-relaying nested XLibre server
 Requires:       xorg-x11-server-common >= %{version}-%{release}
 Provides:       %{oldname}-Xnest = %{version}-%{release}
 Obsoletes:      %{oldname}-Xnest < %{version}-%{release}
+Conflicts:      xlibre-xserver-beta-Xnest
 Provides:       Xnest
 
 %description    Xnest
@@ -194,6 +197,7 @@ Requires:       xorg-x11-server-common >= %{version}-%{release}
 Requires:       xorg-x11-xauth
 Provides:       %{oldname}-Xvfb = %{version}-%{release}
 Obsoletes:      %{oldname}-Xvfb < %{version}-%{release}
+Conflicts:      xlibre-xserver-beta-Xvfb
 Provides:       Xvfb
 Requires:       util-linux
 
@@ -209,6 +213,7 @@ Summary:        An image-rendering nested XLibre server
 Requires:       xorg-x11-server-common >= %{version}-%{release}
 Provides:       %{oldname}-Xephyr = %{version}-%{release}
 Obsoletes:      %{oldname}-Xephyr < %{version}-%{release}
+Conflicts:      xlibre-xserver-beta-Xephyr
 Provides:       Xephyr
 
 %description    Xephyr
@@ -231,6 +236,7 @@ Requires:       pkgconfig
 Provides:       xlibre-xserver-static
 Provides:       %{oldname}-devel = %{version}-%{release}
 Obsoletes:      %{oldname}-devel < %{version}-%{release}
+Conflicts:      xlibre-xserver-beta-devel
 Provides:       %{oldname}-static
 
 %description devel
@@ -244,6 +250,7 @@ drivers, or other X modules should install this package.
 Summary:        XLibre X server source code required to build VNC server (Xvnc)
 Provides:       %{oldname}-source = %{version}-%{release}
 Obsoletes:      %{oldname}-source < %{version}-%{release}
+Conflicts:      xlibre-xserver-beta-source
 BuildArch:      noarch
 
 %description        source
@@ -454,6 +461,12 @@ rm -f %{buildroot}%{_sysconfdir}/X11/xorg.conf.d/*.debian
 
 
 %changelog
+* Tue Aug 25 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.9-2
+- Add Conflicts against xlibre-xserver-beta subpackages so that dnf
+  install --allowerasing cleanly replaces beta with stable (and vice
+  versa) without file conflicts, while preserving the opt-in nature of
+  the beta package (dnf upgrade does not replace beta with stable)
+
 * Wed Jul 29 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.9-1
 - Upgrade XLibre to version 25.1.9
 
