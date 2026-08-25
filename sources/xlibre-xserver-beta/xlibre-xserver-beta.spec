@@ -24,7 +24,7 @@
 Summary:    XLibre X server beta
 Name:       xlibre-xserver-beta
 Version:    25.2.2
-Release:    2%{?dist}
+Release:    3%{?dist}
 URL:        https://github.com/X11Libre/%{reponame}
 # SPDX
 License:    Adobe-Display-PostScript AND BSD-3-Clause AND DEC-3-Clause AND HPND AND HPND-sell-MIT-disclaimer-xserver AND HPND-sell-variant AND ICU AND ISC AND MIT AND MIT-open-group AND NTP AND SGI-B-2.0 AND SMLNJ AND X11 AND X11-distribute-modifications-variant
@@ -137,11 +137,10 @@ Common files shared among all XLibre X servers.
 %package        Xorg
 Summary:        XLibre Xorg X server
 Provides:       %{name} = %{version}-%{release}
-Provides:       xlibre-xserver = %{version}-%{release}
 Requires:       libEGL
 Requires:       system-setup-keyboard
 Requires:       xlibre-xf86-input-libinput
-Requires:       xorg-x11-server-common >= %{version}-%{release}
+Requires:       xlibre-xserver-beta-common >= %{version}-%{release}
 Provides:       Xorg = %{version}-%{release}
 Provides:       %{oldname}-Xorg = %{version}-%{release}
 Obsoletes:      %{oldname}-Xorg < %{version}-%{release}
@@ -160,11 +159,10 @@ Provides:       xserver-abi(extension-%{extension_major}) = %{extension_minor}
 # Dropped from xorg-x11-server-21.1
 # https://gitlab.freedesktop.org/xorg/xserver/-/commit/b3b81c8c2090cd49410960a021baf0d27fdd2ab3
 Obsoletes:      %{oldname}-Xdmx < 1.20.15
-# Legacy fbdev devices have been replaced with simpledrm:
-# https://fedoraproject.org/wiki/Changes/ReplaceFbdevDrivers
-Obsoletes:      xorg-x11-drv-fbdev < 0.5.0-19
-Obsoletes:      xorg-x11-drv-vesa < 2.6.0-3
-Obsoletes:      xorg-x11-drv-armsoc < 1.4.1-10
+# Legacy driver obsoletes (fbdev, vesa, armsoc) are intentionally NOT
+# included here to avoid dual-obsolete conflicts with xlibre-xserver-Xorg
+# when both packages are in the same repository. The stable package
+# handles obsoleting these legacy drivers.
 
 %description    Xorg
 The XLibre Xorg X server is an open source implementation of the X Window System
@@ -175,7 +173,7 @@ interfaces (GUIs) such as GNOME and KDE are designed upon.
 
 %package        Xnest
 Summary:        A protocol-relaying nested XLibre server
-Requires:       xorg-x11-server-common >= %{version}-%{release}
+Requires:       xlibre-xserver-beta-common >= %{version}-%{release}
 Provides:       %{oldname}-Xnest = %{version}-%{release}
 Obsoletes:      %{oldname}-Xnest < %{version}-%{release}
 Conflicts:      xlibre-xserver-Xnest
@@ -192,7 +190,7 @@ wish to test their applications without running them on their real X server.
 Summary:        A virtual framebuffer XLibre server
 # xvfb-run is GPLv2, rest is MIT
 License:        MIT and GPL-2.0-only
-Requires:       xorg-x11-server-common >= %{version}-%{release}
+Requires:       xlibre-xserver-beta-common >= %{version}-%{release}
 # required for xvfb-run
 Requires:       xorg-x11-xauth
 Provides:       %{oldname}-Xvfb = %{version}-%{release}
@@ -210,7 +208,7 @@ otherwise as an X display. Xvfb is normally used for testing servers.
 
 %package        Xephyr
 Summary:        An image-rendering nested XLibre server
-Requires:       xorg-x11-server-common >= %{version}-%{release}
+Requires:       xlibre-xserver-beta-common >= %{version}-%{release}
 Provides:       %{oldname}-Xephyr = %{version}-%{release}
 Obsoletes:      %{oldname}-Xephyr < %{version}-%{release}
 Conflicts:      xlibre-xserver-Xephyr
@@ -462,9 +460,15 @@ rm -f %{buildroot}%{_sysconfdir}/X11/xorg.conf.d/*.debian
 
 
 %changelog
-* Tue Aug 25 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.2.2-2
+* Tue Aug 25 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.2.2-3
+- Remove Provides: xlibre-xserver from Xorg subpackage so dnf install
+  xlibre-xserver only matches the stable package, not beta
+- Remove legacy driver Obsoletes (fbdev, vesa, armsoc) from Xorg
+  subpackage to avoid dual-obsolete conflicts with the stable package
+  when both are in the same repository
 - Add missing Conflicts on devel subpackage against xlibre-xserver-devel
-  so both packages can replace xorg without creating install conflicts
+- Change Requires from xorg-x11-server-common to xlibre-xserver-beta-common
+  so dnf pulls in the matching common package, not the stable one
 
 * Wed Jul 29 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.2.2-1
 - Upgrade XLibre to version 25.2.2

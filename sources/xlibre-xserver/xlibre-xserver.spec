@@ -23,7 +23,7 @@
 Summary:    XLibre X server
 Name:       xlibre-xserver
 Version:    25.1.9
-Release:    2%{?dist}
+Release:    3%{?dist}
 URL:        https://github.com/X11Libre/%{reponame}
 # SPDX
 License:    Adobe-Display-PostScript AND BSD-3-Clause AND DEC-3-Clause AND HPND AND HPND-sell-MIT-disclaimer-xserver AND HPND-sell-variant AND ICU AND ISC AND MIT AND MIT-open-group AND NTP AND SGI-B-2.0 AND SMLNJ AND X11 AND X11-distribute-modifications-variant
@@ -141,7 +141,7 @@ Provides:       xlibre-xserver = %{version}-%{release}
 Requires:       libEGL
 Requires:       system-setup-keyboard
 Requires:       xlibre-xf86-input-libinput
-Requires:       xorg-x11-server-common >= %{version}-%{release}
+Requires:       xlibre-xserver-common >= %{version}-%{release}
 Provides:       Xorg = %{version}-%{release}
 Provides:       %{oldname}-Xorg = %{version}-%{release}
 Obsoletes:      %{oldname}-Xorg < %{version}-%{release}
@@ -175,7 +175,7 @@ interfaces (GUIs) such as GNOME and KDE are designed upon.
 
 %package        Xnest
 Summary:        A protocol-relaying nested XLibre server
-Requires:       xorg-x11-server-common >= %{version}-%{release}
+Requires:       xlibre-xserver-common >= %{version}-%{release}
 Provides:       %{oldname}-Xnest = %{version}-%{release}
 Obsoletes:      %{oldname}-Xnest < %{version}-%{release}
 Conflicts:      xlibre-xserver-beta-Xnest
@@ -192,7 +192,7 @@ wish to test their applications without running them on their real X server.
 Summary:        A virtual framebuffer XLibre server
 # xvfb-run is GPLv2, rest is MIT
 License:        MIT and GPL-2.0-only
-Requires:       xorg-x11-server-common >= %{version}-%{release}
+Requires:       xlibre-xserver-common >= %{version}-%{release}
 # required for xvfb-run
 Requires:       xorg-x11-xauth
 Provides:       %{oldname}-Xvfb = %{version}-%{release}
@@ -210,7 +210,7 @@ otherwise as an X display. Xvfb is normally used for testing servers.
 
 %package        Xephyr
 Summary:        An image-rendering nested XLibre server
-Requires:       xorg-x11-server-common >= %{version}-%{release}
+Requires:       xlibre-xserver-common >= %{version}-%{release}
 Provides:       %{oldname}-Xephyr = %{version}-%{release}
 Obsoletes:      %{oldname}-Xephyr < %{version}-%{release}
 Conflicts:      xlibre-xserver-beta-Xephyr
@@ -461,11 +461,13 @@ rm -f %{buildroot}%{_sysconfdir}/X11/xorg.conf.d/*.debian
 
 
 %changelog
-* Tue Aug 25 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.9-2
+* Tue Aug 25 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.9-3
 - Add Conflicts against xlibre-xserver-beta subpackages so that dnf
   install --allowerasing cleanly replaces beta with stable (and vice
   versa) without file conflicts, while preserving the opt-in nature of
   the beta package (dnf upgrade does not replace beta with stable)
+- Change Requires from xorg-x11-server-common to xlibre-xserver-common
+  so dnf pulls in the matching common package, not the beta one
 
 * Wed Jul 29 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.9-1
 - Upgrade XLibre to version 25.1.9
