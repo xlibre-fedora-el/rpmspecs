@@ -9,7 +9,7 @@
 Summary:    XLibre vmware X11 video driver
 Name:       xlibre-xf86-video-vmware
 Version:    25.0.0
-Release:    2%{?dist}
+Release:    3%{?dist}
 URL:        https://github.com/X11Libre/%{reponame}
 License:    MIT AND X11
 
@@ -35,6 +35,7 @@ Requires: Xorg %(xserver-sdk-abi-requires videodrv)
 Requires: mesa-compat-libxatracker
 
 Provides:       %{oldname} = %{version}-%{release}
+Provides:       %{oldname}%{?_isa} = %{version}-%{release}
 Obsoletes:      %{oldname} < %{version}-%{release}
 
 %description
@@ -57,6 +58,10 @@ find %{buildroot} -name "*.la" -delete
 %{_mandir}/man4/vmware.4*
 
 %changelog
+* Tue Sep 15 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.0-3
+- Add arch-qualified Provides (%{?_isa}) for the renamed xorg-x11-drv-vmware
+  name so dependencies on xorg-x11-drv-vmware(x86-64) resolve correctly
+
 * Wed Feb 18 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.0-2
 - Change runtime dependency from libxatracker to mesa-compat-libxatracker
 

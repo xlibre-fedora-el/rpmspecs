@@ -16,7 +16,7 @@
 Summary:        X.Org X11 openchrome video driver rebuilt for XLibre
 Name:           xlibre-xf86-video-openchrome
 Version:        25.0.0%{!?tag:^%{date}git%{shortcommit0}}
-Release:        1%{?dist}
+Release:        2%{?dist}
 URL:            http://www.freedesktop.org/wiki/Openchrome/
 License:        MIT
 
@@ -46,9 +46,11 @@ Requires:       xorg-x11-server-wrapper
 
 Obsoletes:      %{oldname}-devel < %{version}-%{release}
 Provides:       %{oldname}-devel = %{version}-%{release}
+Provides:       %{oldname}-devel%{?_isa} = %{version}-%{release}
 
 Obsoletes:      %{oldname} < %{version}-%{release}
 Provides:       %{oldname} = %{version}-%{release}
+Provides:       %{oldname}%{?_isa} = %{version}-%{release}
 
 %description
 A build of the X.Org X11 openchrome video driver recompiled against the XLibre
@@ -79,6 +81,10 @@ find %{buildroot} -name "*.la" -delete
 
 
 %changelog
+* Tue Sep 15 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.0-2
+- Add arch-qualified Provides (%{?_isa}) for the renamed xorg-x11-drv-openchrome
+  names so dependencies on e.g. xorg-x11-drv-openchrome(x86-64) resolve correctly
+
 * Wed Feb 18 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.0-1
 - Use XLibre openchrome driver version 25.0.0 instead of Xorg's version
 - Remove patches which are now included upstream

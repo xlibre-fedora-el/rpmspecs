@@ -6,7 +6,7 @@
 Summary:    XLibre wacom X11 input driver
 Name:       xlibre-xf86-input-wacom
 Version:    25.0.0
-Release:    1%{?dist}
+Release:    2%{?dist}
 URL :       https://github.com/X11Libre/%{reponame}
 License:    GPL-2.0-or-later
 
@@ -24,9 +24,11 @@ Requires: Xorg %(xserver-sdk-abi-requires xinput)
 Requires: %{name}-serial-support
 
 Provides:  linuxwacom = %{version}-%{release}
+Provides:  linuxwacom%{?_isa} = %{version}-%{release}
 Obsoletes: linuxwacom <= 0.8.4.3
 
 Provides:  %{oldname} = %{version}-%{release}
+Provides:  %{oldname}%{?_isa} = %{version}-%{release}
 Obsoletes: %{oldname} < %{version}-%{release}
 
 %description
@@ -65,6 +67,7 @@ Requires: pkgconfig
 Requires: pkgconfig(xorg-server) >= 1.7.0
 
 Provides:  %{oldname}-devel = %{version}-%{release}
+Provides:  %{oldname}-devel%{?_isa} = %{version}-%{release}
 Obsoletes: %{oldname}-devel < %{version}-%{release}
 
 %description devel
@@ -83,6 +86,7 @@ XLibre wacom X11 input driver development files.
 Summary:    Files for enabling the wacom_w8001 kernel driver
 
 Provides:  %{oldname}-serial-support = %{version}-%{release}
+Provides:  %{oldname}-serial-support%{?_isa} = %{version}-%{release}
 Obsoletes: %{oldname}-serial-support < %{version}-%{release}
 
 %description serial-support
@@ -97,6 +101,10 @@ will be available as normal evdev node.
 %{_unitdir}/wacom-inputattach@.service
 
 %changelog
+* Tue Sep 15 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.0-2
+- Add arch-qualified Provides (%{?_isa}) for the renamed xorg-x11-drv-wacom
+  names so dependencies on e.g. xorg-x11-drv-wacom(x86-64) resolve correctly
+
 * Wed Apr 15 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.0-1
 - Update to 25.0.0
 

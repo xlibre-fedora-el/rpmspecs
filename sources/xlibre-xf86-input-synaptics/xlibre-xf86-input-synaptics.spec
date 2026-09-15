@@ -7,7 +7,7 @@
 Name:           xlibre-xf86-input-synaptics
 Summary:        XLibre synaptics X11 input driver for Synaptics touchpads
 Version:        25.0.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 URL :           https://github.com/X11Libre/%{reponame}
 # SPDX
 License:        MIT
@@ -32,12 +32,15 @@ Requires:       libevdev
 Requires:       libXi libXtst
 
 Provides:       synaptics = %{version}-%{release}
+Provides:       synaptics%{?_isa} = %{version}-%{release}
 Obsoletes:      synaptics < 0.15.0
 
 Provides:       %{oldname} = %{version}-%{release}
+Provides:       %{oldname}%{?_isa} = %{version}-%{release}
 Obsoletes:      %{oldname} < %{version}-%{release}
 
 Provides:       %{oldname}-legacy = %{version}-%{release}
+Provides:       %{oldname}-legacy%{?_isa} = %{version}-%{release}
 Obsoletes:      %{oldname}-legacy < %{version}-%{release}
 
 %description
@@ -122,6 +125,7 @@ Summary:        XLibre synaptics X11 input driver development package
 Requires:       pkgconfig
 
 Provides:       %{oldname}-devel = %{version}-%{release}
+Provides:       %{oldname}-devel%{?_isa} = %{version}-%{release}
 Obsoletes:      %{oldname}-devel < %{version}-%{release}
 
 %description devel
@@ -133,6 +137,10 @@ Development files for the Synaptics TouchPad X11 input driver for XLibre.
 %{_includedir}/xorg/synaptics-properties.h
 
 %changelog
+* Tue Sep 15 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.0-2
+- Add arch-qualified Provides (%{?_isa}) for the renamed xorg-x11-drv-synaptics
+  names so dependencies on e.g. xorg-x11-drv-synaptics(x86-64) resolve correctly
+
 * Mon Mar 02 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.0-1
 - Upgrade XLibre synaptics driver to version 25.0.0
 

@@ -10,7 +10,7 @@
 Summary:   XLibre nouveau X11 video driver for NVIDIA graphics chipsets
 Name:      xlibre-xf86-video-nouveau
 Version:   25.0.0
-Release:   1%{?dist}
+Release:   2%{?dist}
 URL:       https://github.com/X11Libre/%{reponame}
 License:   MIT
 
@@ -33,6 +33,7 @@ Requires:   Xorg %(xserver-sdk-abi-requires videodrv)
 Requires:   libdrm >= 2.4.33-0.1
 
 Provides:       %{oldname} = 1:%{version}-%{release}
+Provides:       %{oldname}%{?_isa} = 1:%{version}-%{release}
 Obsoletes:      %{oldname} < 1:%{version}-%{release}
 
 %description 
@@ -55,6 +56,10 @@ find %{buildroot} -name "*.la" -delete
 %{_mandir}/man4/nouveau.4*
 
 %changelog
+* Tue Sep 15 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.0-2
+- Add arch-qualified Provides (%{?_isa}) for the renamed xorg-x11-drv-nouveau
+  name so dependencies on xorg-x11-drv-nouveau(x86-64) resolve correctly
+
 * Wed Feb 18 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.0-1
 - Upgrade XLibre nouveau driver to version 25.0.0
 

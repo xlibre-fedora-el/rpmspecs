@@ -8,7 +8,7 @@
 Summary:   XLibre ati X11 video driver
 Name:      xlibre-xf86-video-ati
 Version:   25.0.1
-Release:   1%{?dist}
+Release:   2%{?dist}
 URL:       https://github.com/X11Libre/%{reponame}
 License:   MIT
 
@@ -35,6 +35,7 @@ Requires: Xorg %(xserver-sdk-abi-requires ansic)
 Requires: Xorg %(xserver-sdk-abi-requires videodrv)
 
 Provides:       %{oldname} = %{version}-%{release}
+Provides:       %{oldname}%{?_isa} = %{version}-%{release}
 Obsoletes:      %{oldname} < %{version}-%{release}
 
 %description
@@ -60,6 +61,10 @@ find %{buildroot} -name "*.la" -delete
 %{_datadir}/X11/xorg.conf.d/10-radeon.conf
 
 %changelog
+* Tue Sep 15 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.1-2
+- Add arch-qualified Provides (%{?_isa}) for the renamed xorg-x11-drv-ati
+  name so dependencies on xorg-x11-drv-ati(x86-64) resolve correctly
+
 * Wed Apr 15 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.1-1
 - Update to 25.0.1
 

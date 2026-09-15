@@ -9,7 +9,7 @@
 Summary:   XLibre dummy X11 video driver
 Name:      xlibre-xf86-video-dummy
 Version:   25.0.0
-Release:   1%{?dist}
+Release:   2%{?dist}
 URL:       https://github.com/X11Libre/%{reponame}
 License:   MIT AND X11
 
@@ -22,6 +22,7 @@ BuildRequires:  make
 BuildRequires:  pkgconfig(xorg-server) >= 1.4.99.901
 
 Provides:       %{oldname} = %{version}-%{release}
+Provides:       %{oldname}%{?_isa} = %{version}-%{release}
 Obsoletes:      %{oldname} < %{version}-%{release}
 
 Requires: Xorg %(xserver-sdk-abi-requires ansic)
@@ -48,6 +49,10 @@ find %{buildroot} -name "*.la" -delete
 %{driverdir}/dummy_drv.so
 
 %changelog
+* Tue Sep 15 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.0-2
+- Add arch-qualified Provides: %{oldname}%{?_isa} so packages requiring
+  xorg-x11-drv-dummy(x86-64) (e.g. xpra) can be installed
+
 * Wed Feb 18 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.0-1
 - Upgrade XLibre dummy driver to version 25.0.0
 

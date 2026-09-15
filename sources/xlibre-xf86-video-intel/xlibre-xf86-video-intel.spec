@@ -9,7 +9,7 @@
 Summary:   XLibre intel X11 video driver
 Name:      xlibre-xf86-video-intel
 Version:   25.0.1
-Release:   1%{?dist}
+Release:   2%{?dist}
 URL:       https://github.com/X11Libre/%{reponame}
 License:   MIT
 
@@ -64,6 +64,7 @@ Requires: Xorg %(xserver-sdk-abi-requires videodrv)
 Requires: polkit
 
 Provides:       %{oldname} = %{version}-%{release}
+Provides:       %{oldname}%{?_isa} = %{version}-%{release}
 Obsoletes:      %{oldname} < %{version}-%{release}
 
 %description
@@ -124,6 +125,10 @@ rm -f %{buildroot}%{_libdir}/libI*XvMC.so
 %{_bindir}/intel-virtual-output
 
 %changelog
+* Tue Sep 15 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.1-2
+- Add arch-qualified Provides (%{?_isa}) for the renamed xorg-x11-drv-intel
+  name so dependencies on xorg-x11-drv-intel(x86-64) resolve correctly
+
 * Wed Feb 18 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.1-1
 - Upgrade XLibre intel driver to version 25.0.1
 

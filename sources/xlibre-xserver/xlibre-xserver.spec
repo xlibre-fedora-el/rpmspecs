@@ -23,7 +23,7 @@
 Summary:    XLibre X server
 Name:       xlibre-xserver
 Version:    25.1.9
-Release:    3%{?dist}
+Release:    4%{?dist}
 URL:        https://github.com/X11Libre/%{reponame}
 # SPDX
 License:    Adobe-Display-PostScript AND BSD-3-Clause AND DEC-3-Clause AND HPND AND HPND-sell-MIT-disclaimer-xserver AND HPND-sell-variant AND ICU AND ISC AND MIT AND MIT-open-group AND NTP AND SGI-B-2.0 AND SMLNJ AND X11 AND X11-distribute-modifications-variant
@@ -128,6 +128,7 @@ Requires:       pixman
 Requires:       xkbcomp
 Requires:       xkeyboard-config
 Provides:       %{oldname}-common = %{version}-%{release}
+Provides:       %{oldname}-common%{?_isa} = %{version}-%{release}
 Obsoletes:      %{oldname}-common < %{version}-%{release}
 Conflicts:      xlibre-xserver-beta-common
 
@@ -152,6 +153,7 @@ Conflicts:      xlibre-xserver-beta-Xorg
 # its own sub-package:
 Provides:       xlibre-xserver-wrapper = %{version}-%{release}
 Provides:       %{oldname}-wrapper = %{version}-%{release}
+Provides:       %{oldname}-wrapper%{?_isa} = %{version}-%{release}
 Provides:       xserver-abi(ansic-%{ansic_major}) = %{ansic_minor}
 Provides:       xserver-abi(videodrv-%{xorgvideodrv_major}) = %{xorgvideodrv_minor}
 Provides:       xserver-abi(videodrv-%{videodrv_major}) = %{videodrv_minor}
@@ -177,6 +179,7 @@ interfaces (GUIs) such as GNOME and KDE are designed upon.
 Summary:        A protocol-relaying nested XLibre server
 Requires:       xlibre-xserver-common >= %{version}-%{release}
 Provides:       %{oldname}-Xnest = %{version}-%{release}
+Provides:       %{oldname}-Xnest%{?_isa} = %{version}-%{release}
 Obsoletes:      %{oldname}-Xnest < %{version}-%{release}
 Conflicts:      xlibre-xserver-beta-Xnest
 Provides:       Xnest
@@ -196,6 +199,7 @@ Requires:       xlibre-xserver-common >= %{version}-%{release}
 # required for xvfb-run
 Requires:       xorg-x11-xauth
 Provides:       %{oldname}-Xvfb = %{version}-%{release}
+Provides:       %{oldname}-Xvfb%{?_isa} = %{version}-%{release}
 Obsoletes:      %{oldname}-Xvfb < %{version}-%{release}
 Conflicts:      xlibre-xserver-beta-Xvfb
 Provides:       Xvfb
@@ -212,6 +216,7 @@ otherwise as an X display. Xvfb is normally used for testing servers.
 Summary:        An image-rendering nested XLibre server
 Requires:       xlibre-xserver-common >= %{version}-%{release}
 Provides:       %{oldname}-Xephyr = %{version}-%{release}
+Provides:       %{oldname}-Xephyr%{?_isa} = %{version}-%{release}
 Obsoletes:      %{oldname}-Xephyr < %{version}-%{release}
 Conflicts:      xlibre-xserver-beta-Xephyr
 Provides:       Xephyr
@@ -235,9 +240,11 @@ Requires:       pixman-devel
 Requires:       pkgconfig
 Provides:       xlibre-xserver-static
 Provides:       %{oldname}-devel = %{version}-%{release}
+Provides:       %{oldname}-devel%{?_isa} = %{version}-%{release}
 Obsoletes:      %{oldname}-devel < %{version}-%{release}
 Conflicts:      xlibre-xserver-beta-devel
 Provides:       %{oldname}-static
+Provides:       %{oldname}-static%{?_isa}
 
 %description devel
 The SDK package provides the developmental files which are necessary for
@@ -461,6 +468,11 @@ rm -f %{buildroot}%{_sysconfdir}/X11/xorg.conf.d/*.debian
 
 
 %changelog
+* Tue Sep 15 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.9-4
+- Add arch-qualified Provides (%{?_isa}) for the renamed
+  xorg-x11-server-* subpackage names so dependencies on e.g.
+  xorg-x11-server-Xvfb(x86-64) resolve correctly
+
 * Tue Aug 25 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.9-3
 - Add Conflicts against xlibre-xserver-beta subpackages so that dnf
   install --allowerasing cleanly replaces beta with stable (and vice

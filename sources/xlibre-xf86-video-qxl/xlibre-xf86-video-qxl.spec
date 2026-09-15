@@ -16,7 +16,7 @@
 Summary:    XLibre qxl X11 video driver
 Name:       xlibre-xf86-video-qxl
 Version:    25.0.0
-Release:    2%{?dist}
+Release:    3%{?dist}
 URL:        https://github.com/X11Libre/%{reponame}
 License:    MIT
 
@@ -50,6 +50,7 @@ Requires: Xorg %(xserver-sdk-abi-requires ansic)
 Requires: Xorg %(xserver-sdk-abi-requires videodrv)
 
 Provides:       %{oldname} = %{version}-%{release}
+Provides:       %{oldname}%{?_isa} = %{version}-%{release}
 Obsoletes:      %{oldname} < %{version}-%{release}
 
 %description
@@ -64,6 +65,7 @@ Requires:       xlibre-server-Xorg
 Requires:       pcsc-lite-ccid
 
 Provides:       xorg-x11-server-Xspice = %{version}-%{release}
+Provides:       xorg-x11-server-Xspice%{?_isa} = %{version}-%{release}
 Obsoletes:      xorg-x11-server-Xspice < %{version}-%{release}
 
 %description -n xlibre-server-Xspice
@@ -112,6 +114,11 @@ install -p -m 644 examples/spiceqxl.xorg.conf.example \
 
 
 %changelog
+* Tue Sep 15 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.0-3
+- Add arch-qualified Provides (%{?_isa}) for the renamed xorg-x11-drv-qxl
+  and xorg-x11-server-Xspice names so dependencies on e.g.
+  xorg-x11-drv-qxl(x86-64) resolve correctly
+
 * Wed Apr 15 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.0-2
 - Fix unpackaged doc example path cleanup for renamed docdir
 

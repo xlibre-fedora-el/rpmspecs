@@ -9,7 +9,7 @@
 
 Name:       xlibre-xf86-video-amdgpu
 Version:    25.1.0
-Release:    2%{?dist}
+Release:    3%{?dist}
 
 Summary:    XLibre amdgpu X11 video driver
 License:    MIT
@@ -38,6 +38,7 @@ Requires: Xorg %(xserver-sdk-abi-requires videodrv)
 Requires: libdrm >= 2.4.89
 
 Provides:       %{oldname} = %{version}-%{release}
+Provides:       %{oldname}%{?_isa} = %{version}-%{release}
 Obsoletes:      %{oldname} < %{version}-%{release}
 
 %description
@@ -61,6 +62,10 @@ find %{buildroot} -name '*.la' -delete
 %{_mandir}/man4/amdgpu.4*
 
 %changelog
+* Tue Sep 15 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.0-3
+- Add arch-qualified Provides (%{?_isa}) for the renamed xorg-x11-drv-amdgpu
+  name so dependencies on xorg-x11-drv-amdgpu(x86-64) resolve correctly
+
 * Tue Feb 10 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.2-1
 - Upgrade XLibre amd-gpu driver to version 25.1.0
 

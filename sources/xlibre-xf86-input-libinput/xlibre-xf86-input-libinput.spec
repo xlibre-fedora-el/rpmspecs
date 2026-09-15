@@ -7,7 +7,7 @@
 Summary:    XLibre libinput X11 input driver
 Name:       xlibre-xf86-input-libinput
 Version:    25.0.1
-Release:    1%{?dist}
+Release:    2%{?dist}
 URL :       https://github.com/X11Libre/%{reponame}
 # SPDX
 License:    MIT
@@ -32,9 +32,11 @@ Requires: xkeyboard-config
 Requires: libinput >= 0.21.0
 
 Provides:  %{oldname} = %{version}-%{release}
+Provides:  %{oldname}%{?_isa} = %{version}-%{release}
 Obsoletes: %{oldname} < %{version}-%{release}
 
 Provides: xorg-x11-drv-synaptics = 1.9.0-3
+Provides: xorg-x11-drv-synaptics%{?_isa} = 1.9.0-3
 Obsoletes: xorg-x11-drv-synaptics < 1.9.0-3
 
 %description
@@ -69,6 +71,7 @@ Summary:        XLibre libinput X11 input driver development package.
 Requires:       pkgconfig
 
 Provides:       %{oldname}-devel = %{version}-%{release}
+Provides:       %{oldname}-devel%{?_isa} = %{version}-%{release}
 Obsoletes:      %{oldname}-devel < %{version}-%{release}
 
 %description devel
@@ -82,6 +85,10 @@ XLibre libinput X11 input driver development files.
 
 
 %changelog
+* Tue Sep 15 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.1-2
+- Add arch-qualified Provides (%{?_isa}) for the renamed xorg-x11-drv-*
+  names so dependencies on e.g. xorg-x11-drv-libinput(x86-64) resolve correctly
+
 * Wed Feb 18 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.1-1
 - Upgrade XLibre libinput driver to version 25.0.1
 

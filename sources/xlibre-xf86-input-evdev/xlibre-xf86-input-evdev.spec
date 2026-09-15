@@ -7,7 +7,7 @@
 Summary:    XLibre evdev X11 input driver
 Name:       xlibre-xf86-input-evdev
 Version:    25.0.0
-Release:    1%{?dist}
+Release:    2%{?dist}
 URL :       https://github.com/X11Libre/%{reponame}
 License:    HPND-sell-variant AND MIT
 
@@ -25,6 +25,7 @@ Requires: xkeyboard-config >= 1.4-1
 Requires: mtdev
 
 Provides:  %{oldname} = %{version}-%{release}
+Provides:  %{oldname}%{?_isa} = %{version}-%{release}
 Obsoletes: %{oldname} < %{version}-%{release}
 
 Obsoletes: xorg-x11-drv-mouse < 1.9.0-8
@@ -57,6 +58,7 @@ Summary:    XLibre evdev X11 input driver development package.
 Requires:   pkgconfig
 
 Provides:   %{oldname}-devel = %{version}-%{release}
+Provides:   %{oldname}-devel%{?_isa} = %{version}-%{release}
 Obsoletes:  %{oldname}-devel < %{version}-%{release}
 
 %description devel
@@ -69,6 +71,10 @@ XLibre evdev X11 input driver development files.
 
 
 %changelog
+* Tue Sep 15 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.0-2
+- Add arch-qualified Provides (%{?_isa}) for the renamed xorg-x11-drv-evdev
+  names so dependencies on e.g. xorg-x11-drv-evdev(x86-64) resolve correctly
+
 * Wed Feb 18 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.0.0-1
 - Upgrade XLibre evdev driver to version 25.0.0
 
