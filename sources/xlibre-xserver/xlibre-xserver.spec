@@ -22,8 +22,8 @@
 
 Summary:    XLibre X server
 Name:       xlibre-xserver
-Version:    25.1.9
-Release:    3%{?dist}
+Version:    25.1.11
+Release:    1%{?dist}
 URL:        https://github.com/X11Libre/%{reponame}
 # SPDX
 License:    Adobe-Display-PostScript AND BSD-3-Clause AND DEC-3-Clause AND HPND AND HPND-sell-MIT-disclaimer-xserver AND HPND-sell-variant AND ICU AND ISC AND MIT AND MIT-open-group AND NTP AND SGI-B-2.0 AND SMLNJ AND X11 AND X11-distribute-modifications-variant
@@ -461,6 +461,9 @@ rm -f %{buildroot}%{_sysconfdir}/X11/xorg.conf.d/*.debian
 
 
 %changelog
+* Thu Nov 05 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.11-1
+- Upgrade to XLibre 25.1.11
+
 * Tue Aug 25 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.1.9-3
 - Add Conflicts against xlibre-xserver-beta subpackages so that dnf
   install --allowerasing cleanly replaces beta with stable (and vice
