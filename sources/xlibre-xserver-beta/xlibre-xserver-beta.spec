@@ -23,8 +23,8 @@
 
 Summary:    XLibre X server beta
 Name:       xlibre-xserver-beta
-Version:    25.2.2
-Release:    3%{?dist}
+Version:    25.2.3
+Release:    1%{?dist}
 URL:        https://github.com/X11Libre/%{reponame}
 # SPDX
 License:    Adobe-Display-PostScript AND BSD-3-Clause AND DEC-3-Clause AND HPND AND HPND-sell-MIT-disclaimer-xserver AND HPND-sell-variant AND ICU AND ISC AND MIT AND MIT-open-group AND NTP AND SGI-B-2.0 AND SMLNJ AND X11 AND X11-distribute-modifications-variant
@@ -460,6 +460,9 @@ rm -f %{buildroot}%{_sysconfdir}/X11/xorg.conf.d/*.debian
 
 
 %changelog
+* Thu Nov 05 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.2.3-1
+- Upgrade to XLibre beta 25.2.3
+
 * Tue Aug 25 2026 Anders da Silva Rytter Hansen <andersrh@users.noreply.github.com> - 25.2.2-3
 - Remove Provides: xlibre-xserver from Xorg subpackage so dnf install
   xlibre-xserver only matches the stable package, not beta
