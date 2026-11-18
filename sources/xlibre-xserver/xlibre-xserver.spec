@@ -23,7 +23,7 @@
 Summary:    XLibre X server
 Name:       xlibre-xserver
 Version:    25.1.11
-Release:    1%{?dist}
+Release:    2%{?dist}
 URL:        https://github.com/X11Libre/%{reponame}
 # SPDX
 License:    Adobe-Display-PostScript AND BSD-3-Clause AND DEC-3-Clause AND HPND AND HPND-sell-MIT-disclaimer-xserver AND HPND-sell-variant AND ICU AND ISC AND MIT AND MIT-open-group AND NTP AND SGI-B-2.0 AND SMLNJ AND X11 AND X11-distribute-modifications-variant
@@ -49,6 +49,9 @@ Patch3:     0001-Fedora-hack-Make-the-suid-root-wrapper-always-start-.patch
 Patch4:     xlibre-xserver-25.1.5-meson-prefix-compat.patch
 # Fix arc4random_buf/getrandom build on EL9 (upstream regression in 25.1.7)
 Patch5:     xlibre-xserver-25.1.7-el9.patch
+# Backported fixes until the next version of XLibre gets released
+Patch6:     https://raw.githubusercontent.com/xlibre-arch/xlibre-arch/ba10cdfc3cd1476d822696e1e7fab6e011bb5c00/xlibre-xserver/xlibre-xserver-gh-4080-revert-link-libxserver_glx.patch
+Patch7:     https://raw.githubusercontent.com/xlibre-arch/xlibre-arch/ba10cdfc3cd1476d822696e1e7fab6e011bb5c00/xlibre-xserver/xlibre-xserver-gh-4084-damage-fix-abi.patch
 
 BuildRequires:  bison
 BuildRequires:  flex
@@ -266,6 +269,8 @@ Xserver source code needed to build VNC server (Xvnc).
 %patch -P4 -p1 -b .meson-prefix
 %patch -P5 -p1 -b .el9-getrandom
 %endif
+%patch -P6 -p1 -b .tmpfix
+%patch -P7 -p1 -b .tmpfix2
 
 # check the ABI in the source against what we expect.
 getmajor() {
